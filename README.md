@@ -28,18 +28,30 @@ Tests are custom/manual and do not use frameworks such as GoogleTest.
 
 Features:
 -Jump anomaly detection with adjustable threshold
+
 -Time anomaly detection with adjustable threshold
+
 -Total diagnostic summary reporting and print of anomalies
+
 -Custom CSV data parser
+
 -Trajectory printing
+
 -Sort by x pose
+
 -Shifting the trajectory's x coordinates
+
 -Computing the average x and y coordinate
+
 -Finding the min/max x coordinate
+
 -Empty-trajectory handling with std::optional
+
 -Unit tests
 
+
 ##File structure
+
 'TimedPose.hpp':
 Unit pose struct definition.
 
