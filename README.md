@@ -86,7 +86,7 @@ Features:
 
 ##Build instructions
 ```bash
-    mkdir data {copy csv file into THIS directory, not the source!}
+    mkdir data #copy csv file into THIS directory, not the source!
 
     mkdir build
 
