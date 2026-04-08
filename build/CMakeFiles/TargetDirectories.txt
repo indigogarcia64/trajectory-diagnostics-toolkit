@@ -1,0 +1,5 @@
+/home/indigo/Desktop/C_Practice/cpp-robotics-fundamentals/trajectory_diagnostics_toolkit/build/CMakeFiles/trajectory_utils.dir
+/home/indigo/Desktop/C_Practice/cpp-robotics-fundamentals/trajectory_diagnostics_toolkit/build/CMakeFiles/trajectory_diagnostics.dir
+/home/indigo/Desktop/C_Practice/cpp-robotics-fundamentals/trajectory_diagnostics_toolkit/build/CMakeFiles/trajectory_tests.dir
+/home/indigo/Desktop/C_Practice/cpp-robotics-fundamentals/trajectory_diagnostics_toolkit/build/CMakeFiles/edit_cache.dir
+/home/indigo/Desktop/C_Practice/cpp-robotics-fundamentals/trajectory_diagnostics_toolkit/build/CMakeFiles/rebuild_cache.dir

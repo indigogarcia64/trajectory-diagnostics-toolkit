@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/trajectory_diagnostics.dir/main.cpp.o -o trajectory_diagnostics  libtrajectory_utils.a 
