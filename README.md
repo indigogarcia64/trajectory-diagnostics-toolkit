@@ -50,7 +50,8 @@ Run the test executable:
 ```
 
 ### Example Output
-```Average x coordinate: 0.25
+```text
+Average x coordinate: 0.25
 Average y coordinate: 0.125
 Total path length: 0.34
 
@@ -73,16 +74,16 @@ The toolkit currently detects:
 - **Jump Anomaly**: consecutive spatial displacement exceeds `JUMP_THRESHOLD`
 - **Repeated Timestamp**: consecutive timestamps are identical
 - **Backward Timestamp**: current timestamp is less than previous timestamp
-- **Oversized Timestamp**: consecutive timestamp difference exceeds `TIME_JUMP_THRESHOLD` 
+- **Oversized Timestamp Gap**: consecutive timestamp difference exceeds `TIME_JUMP_THRESHOLD` 
 
 ## File structure
-- 'TimedPose.hpp': Timed-stamped pose data structure.
-- 'TrajectoryDiagnostics.hpp/cpp': Anomaly detection, reporting, and summary logic.
-- 'TrajectoryIO.hpp/cpp': CSV parsing and trajectory loading.
-- 'TrajectoryTests.cpp': Unit style tests.
-- 'TrajectoryUtils.hpp/cpp': Metric and utility functions.
-- 'main.cpp': Demo executable.
-- 'CMakeLists.txt': Build configuration.
+- `TimedPose.hpp`: Time-stamped pose data structure.
+- `TrajectoryDiagnostics.hpp/cpp`: Anomaly detection, reporting, and summary logic.
+- `TrajectoryIO.hpp/cpp`: CSV parsing and trajectory loading.
+- `TrajectoryTests.cpp`: Unit style tests.
+- `TrajectoryUtils.hpp/cpp`: Metric and utility functions.
+- `main.cpp`: Demo executable.
+- `CMakeLists.txt`: Build configuration.
 
 ## Testing
 Tests currently cover:
@@ -94,7 +95,7 @@ Tests currently cover:
 ## Limitations/Future Work:
 - Fixed CSV schema: timestamp,x,y,theta
 - Malformed rows cause loading failure
-- Thresholds are compile-time constraints
+- Thresholds are compile-time constants
 - No plotting or visualization yet
 - No velocity, acceleration, or heading-change diagnostics yet
 - No general-purpose CSV quoting or dialect support
