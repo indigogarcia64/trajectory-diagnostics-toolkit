@@ -39,10 +39,14 @@ cmake --build .
 ```
 
 ## Run instructions
+Analyze a trajectory file:
 ```bash
-    ./trajectory_diagnostics ../{CSV FILE NAME}
+./trajectory_diagnostics ../data/trajectory_data.csv
+```
 
-    ./trajectory_tests
+Run the test executable:
+```bash
+./trajectory_tests
 ```
 
 ### Example Output
