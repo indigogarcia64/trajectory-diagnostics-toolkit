@@ -30,7 +30,7 @@ timestamp,x,y,theta
 0.2,0.2,0.0,0.0
 ```
 
-## Build instructions
+## Build Instructions
 ```bash
 mkdir build
 cd build
@@ -38,7 +38,7 @@ cmake ..
 cmake --build .
 ```
 
-## Run instructions
+## Run Instructions
 Analyze a trajectory file:
 ```bash
 ./trajectory_diagnostics ../data/trajectory_data.csv
@@ -76,11 +76,11 @@ The toolkit currently detects:
 - **Backward Timestamp**: current timestamp is less than previous timestamp
 - **Oversized Timestamp Gap**: consecutive timestamp difference exceeds `TIME_JUMP_THRESHOLD` 
 
-## File structure
+## File Structure
 - `TimedPose.hpp`: Time-stamped pose data structure.
 - `TrajectoryDiagnostics.hpp/cpp`: Anomaly detection, reporting, and summary logic.
 - `TrajectoryIO.hpp/cpp`: CSV parsing and trajectory loading.
-- `TrajectoryTests.cpp`: Unit style tests.
+- `TrajectoryTests.cpp`: Unit-style tests.
 - `TrajectoryUtils.hpp/cpp`: Metric and utility functions.
 - `main.cpp`: Demo executable.
 - `CMakeLists.txt`: Build configuration.
@@ -92,7 +92,7 @@ Tests currently cover:
 - time anomaly detection
 - diagnostic summary updates
 
-## Limitations/Future Work:
+## Limitations / Future Work:
 - Fixed CSV schema: timestamp,x,y,theta
 - Malformed rows cause loading failure
 - Thresholds are compile-time constants
