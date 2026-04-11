@@ -1,105 +1,98 @@
-#Trajectory Diagnostics Toolkit
+# Trajectory Diagnostics Toolkit
 
-This project is a diagnostics toolkit primarily for analyzing anomalous behavior in trajectory vectors.
-It expects a CSV file with four categories, formatted in timestamp, x, y, theta. Each row represents a particular pose at a particular time.
-The output provides a lists of anomalous behaviors including total anomalies and anomaly type. 
-This toolkit was developed as a diagnostics expansion of a project that only provided basic utilities such as finding the minimum x coordinate
-or finding the maximum x coordinate. 
+## Overview
+A C++ diagnostics tool for analyzing time-stamped 2D trajectory data. The toolkit loads trajectory logs from CSV, computes basic motion metrics, detects geometric and temporal anomalies, and prints a summary report. It was developed as an extension of an earlier trajectory-utilities project into a more complete diagnostics and validation tool.
 
-Assumptions:
-1. Data file MUST be in CSV in format:
+## Features
 
-    timestamp,x,y,theta
+- CSV trajectory loading
+- Trajectory printing
+- Average x and y coordinate computation
+- Minimum and maximum x coordinate detection
+- Total path length computation
+- Jump anomaly detection
+- Timestamp anomaly detection:
+  - repeated timestamps
+  - backward timestamps
+  - oversized timestamp gaps
+- Diagnostic summary reporting
+- Command-line file input
+- Unit-style tests for metrics, anomaly detection, and summary logic
 
-    where...
+## CSV Format
 
-    timestamp: the time at which the pose measurement was taken (in seconds)
-    x: the x coordinate
-    y: the y coordinate
-    theta: the heading angle
+The toolkit expects a CSV file in the following format:
 
-You may define your own units for the spatial coordinates, as this toolkit is not unit dependent except for on time.
-
-2. Data must be of type double. There is currently no support or case-handling for non-double types such as int, std::string, or custom types.
-
-
-
-Tests are custom/manual and do not use frameworks such as GoogleTest.
-
-
-Features:
-
-    -Jump anomaly detection with adjustable threshold
-
-    -Time anomaly detection with adjustable threshold
-
-    -Total diagnostic summary reporting and print of anomalies
-
-    -Custom CSV data parser
-
-    -Trajectory printing
-
-    -Sort by x pose
-
-    -Shifting the trajectory's x coordinates
-
-    -Computing the average x and y coordinate
-
-    -Finding the min/max x coordinate
-
-    -Empty-trajectory handling with std::optional
-
-    -Unit tests
-
-
-##File structure
-
-    'TimedPose.hpp':
-    Unit pose struct definition.
-
-    'TrajectoryDiagnostics.hpp':
-    Function definitions for diagnostics.
-
-    'TrajectoryDiagnostics.cpp':
-    Function implementations for diagnostics.
-
-    'TrajectoryIO.hpp':
-    Function definition for parser.
-
-    'TrajectoryIO.cpp':
-    Function implementation for parser.
-
-    'TrajectoryTests.cpp':
-    Unit tests for all diagnostic functions including empty trajectory, nullopt, and single element cases. 
-
-    'TrajectoryUtils.hpp':
-    Function definitions for trajectory utilities such as maximum x, minimum x, shift x, etc.
-
-    'TrajectoryUtils.cpp':
-    Function implementations for trajectory utilities.
-
-    'main.cpp':
-    Demo executable.
-
-    'CMakeLists.txt':
-    Build configuration.
-
-##Build instructions
-```bash
-    mkdir data #copy csv file into THIS directory, not the source!
-
-    mkdir build
-
-    cd build
-
-    cmake ..
-
-    cmake --build .
+```text
+timestamp,x,y,theta
+0.0,0.0,0.0,0.0
+0.1,0.1,0.0,0.0
+0.2,0.2,0.0,0.0
 ```
 
-##Run instructions
+## Build instructions
+```bash
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+## Run instructions
 ```bash
     ./trajectory_diagnostics ../{CSV FILE NAME}
 
     ./trajectory_tests
 ```
+
+### Example Output
+```Average x coordinate: 0.25
+Average y coordinate: 0.125
+Total path length: 0.34
+
+Jump anomalies detected!
+Anomaly type: Jump
+Occurred between: 0.2s and 0.3s
+Jump distance: 3.2m
+
+DIAGNOSTIC SUMMARY
+---------------------------------------------------------
+Total anomaly count: 3
+Jump count: 1
+Repeated time count: 1
+Backward time count: 0
+Oversized time count: 1
+```
+
+## Diagnostic Logic
+The toolkit currently detects:
+- **Jump Anomaly**: consecutive spatial displacement exceeds `JUMP_THRESHOLD`
+- **Repeated Timestamp**: consecutive timestamps are identical
+- **Backward Timestamp**: current timestamp is less than previous timestamp
+- **Oversized Timestamp**: consecutive timestamp difference exceeds `TIME_JUMP_THRESHOLD` 
+
+## File structure
+- 'TimedPose.hpp': Timed-stamped pose data structure.
+- 'TrajectoryDiagnostics.hpp/cpp': Anomaly detection, reporting, and summary logic.
+- 'TrajectoryIO.hpp/cpp': CSV parsing and trajectory loading.
+- 'TrajectoryTests.cpp': Unit style tests.
+- 'TrajectoryUtils.hpp/cpp': Metric and utility functions.
+- 'main.cpp': Demo executable.
+- 'CMakeLists.txt': Build configuration.
+
+## Testing
+Tests currently cover:
+- total path length
+- jump anomaly detection
+- time anomaly detection
+- diagnostic summary updates
+
+## Limitations/Future Work:
+- Fixed CSV schema: timestamp,x,y,theta
+- Malformed rows cause loading failure
+- Thresholds are compile-time constraints
+- No plotting or visualization yet
+- No velocity, acceleration, or heading-change diagnostics yet
+- No general-purpose CSV quoting or dialect support
+
+
